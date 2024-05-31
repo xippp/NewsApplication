@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="NewsApplication" customModuleProvider="target">
             <connections>
+                <outlet property="newsTableView" destination="ctt-cA-0JZ" id="RpQ-FL-HgT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="jXr-B4-643"/>
             </connections>
         </placeholder>
@@ -17,12 +18,27 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ctt-cA-0JZ">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemPinkColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ctt-cA-0JZ" secondAttribute="trailing" id="3rw-gk-YSw"/>
+                <constraint firstItem="ctt-cA-0JZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="CH2-Oi-lrD"/>
+                <constraint firstItem="ctt-cA-0JZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="PTd-r6-oAv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ctt-cA-0JZ" secondAttribute="bottom" id="X4I-eA-3Eu"/>
+            </constraints>
             <point key="canvasLocation" x="36" y="20"/>
         </view>
     </objects>
     <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
