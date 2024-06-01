@@ -7,9 +7,12 @@
 
 import Foundation
 import UIKit
-
+import RxSwift
+import RxCocoa
 class MainViewController: UIViewController {
     
+    var viewModel = MainViewModel()
+    private let disposeBag = DisposeBag()
 //    MARK: -IBOutlet Properties
     
     @IBOutlet weak var newsTableView: UITableView! {
@@ -22,9 +25,28 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         print("Hello Come To Main News page")
-        newsTableView.reloadData()
+        setupObservable()
+        viewModel.fetchTopHeadlineAll(country: "th")
     }
-       
+    
+    func fetchTopHeadline() {
+        viewModel.topHeadlinesAllObservable.subscribe { newsModel in
+            print("Top Headline News is: \(newsModel)")
+            self.viewModel.fetchNewsSpecific(source: "Apple")
+        }.disposed(by: disposeBag)
+    }
+    
+    func fetchSpecificNews() {
+        viewModel.specificNewsObservable.subscribe { specificNewsModel in
+            print("Specific News is: \(specificNewsModel)")
+        }.disposed(by: disposeBag)
+    }
+    
+    func setupObservable() {
+        fetchTopHeadline()
+        fetchSpecificNews()
+    }
+    
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
@@ -38,8 +60,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 300
+//    }
     
 }

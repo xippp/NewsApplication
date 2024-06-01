@@ -9,6 +9,14 @@ import Foundation
 import UIKit
 class SectionNewsTab: UIView {
     
+//    MARK: -Properties
+    
+    var setText: String = "" {
+        didSet {
+            titleLabel.text = setText
+        }
+    }
+    
 //    MARK: -IBOutlet Propertise
     
     @IBOutlet weak var cornerTabView: UIView! {
@@ -25,7 +33,7 @@ class SectionNewsTab: UIView {
     
 
     @IBAction func seeAllNews(_ sender: Any) {
-        
+        print("Sell All News Selected")
     }
     
     override init(frame: CGRect) {
