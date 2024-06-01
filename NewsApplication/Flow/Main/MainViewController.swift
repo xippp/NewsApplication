@@ -33,10 +33,25 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     func setupObservable() {
         newsTableView.rx.setDelegate(self).disposed(by: disposeBag)
         viewModel.newsDataObservable.bind(to: newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
-            cell.sectionNewsTab.setText = "Apple"
+            if row == 0 {
+                cell.sectionNewsTab.setText = "Treading News"
+            } else if row == 1 {
+                cell.sectionNewsTab.setText = "Apple News"
+            }
+            cell.setupNewsCollection(with: Observable.just(item.articles))
+            cell.articleSelected.subscribe(onNext: { articel in
+                self.openWebNews(url: articel.url)
+            }).disposed(by: self.disposeBag)
         }
     }
 
+    
+    private func openWebNews(url: String) {
+        if let url = URL(string: url) {
+            UIApplication.shared.openURL(url)
+        } else { return }
+        
+    }
     
 }
 

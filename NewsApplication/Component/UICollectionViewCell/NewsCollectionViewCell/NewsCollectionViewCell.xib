@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,11 +19,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TfL-Zg-eHi">
                         <rect key="frame" x="0.0" y="59" width="300" height="57"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news1" translatesAutoresizingMaskIntoConstraints="NO" id="hZg-S3-Ajz">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="hZg-S3-Ajz">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="57"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hZg-S3-Ajz" firstAttribute="leading" secondItem="TfL-Zg-eHi" secondAttribute="leading" id="3FU-uX-gPu"/>
                             <constraint firstAttribute="bottom" secondItem="hZg-S3-Ajz" secondAttribute="bottom" id="6bi-pb-nNf"/>
@@ -43,15 +42,13 @@
             </constraints>
             <size key="customSize" width="396" height="246"/>
             <connections>
+                <outlet property="imageNews" destination="hZg-S3-Ajz" id="ve0-D7-cH0"/>
                 <outlet property="roundCornerView" destination="TfL-Zg-eHi" id="rV9-aw-yRx"/>
             </connections>
             <point key="canvasLocation" x="300.76335877862596" y="88.732394366197184"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="news1" width="780" height="410"/>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="placeholderImage" width="800" height="600"/>
     </resources>
 </document>
