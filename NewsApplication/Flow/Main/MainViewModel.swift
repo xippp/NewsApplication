@@ -14,6 +14,7 @@ class MainViewModel {
     
     var topHeadlinesAll: PublishSubject<NewsModel> = PublishSubject()
     var specificNews: PublishSubject<NewsModel> = PublishSubject()
+    var newsData: PublishSubject<[NewsModel]> = PublishSubject()
     
     var topHeadlinesAllObservable: Observable<NewsModel> {
         topHeadlinesAll.asObservable()
@@ -22,11 +23,18 @@ class MainViewModel {
         specificNews.asObservable()
     }
     
+    var newsDataObservable: Observable<[NewsModel]> {
+        newsData.asObservable()
+    }
+    
+    var newsArray: [NewsModel] = []
+    
     func fetchTopHeadlineAll(country: String) {
         Task {
             do {
               let newsModel = try await network.callTopHeadline(country: country)
-                topHeadlinesAll.onNext(newsModel)
+                self.newsArray.append(newsModel)
+                fetchNewsSpecific(source: "Apple")
             } catch {
                 print("Error is: \(error.localizedDescription)")
             }
@@ -37,7 +45,8 @@ class MainViewModel {
         Task {
             do {
                 let newsModel = try await network.callTopHeadlineSpecific(source: source)
-                specificNews.onNext(newsModel)
+                self.newsArray.append(newsModel)
+                newsData.onNext(self.newsArray)
             } catch {
                 print("Error is: \(error.localizedDescription)")
             }

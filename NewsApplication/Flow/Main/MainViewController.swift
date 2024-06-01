@@ -9,16 +9,17 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UIScrollViewDelegate {
     
     var viewModel = MainViewModel()
     private let disposeBag = DisposeBag()
+    var allData: [NewsModel] = []
+    var topHeadlineNews: NewsModel?
+    var specificNews: NewsModel?
 //    MARK: -IBOutlet Properties
     
     @IBOutlet weak var newsTableView: UITableView! {
         didSet {
-            newsTableView.delegate = self
-            newsTableView.dataSource = self
             newsTableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "newsTableCell")
         }
     }
@@ -29,39 +30,29 @@ class MainViewController: UIViewController {
         viewModel.fetchTopHeadlineAll(country: "th")
     }
     
-    func fetchTopHeadline() {
-        viewModel.topHeadlinesAllObservable.subscribe { newsModel in
-            print("Top Headline News is: \(newsModel)")
-            self.viewModel.fetchNewsSpecific(source: "Apple")
-        }.disposed(by: disposeBag)
-    }
-    
-    func fetchSpecificNews() {
-        viewModel.specificNewsObservable.subscribe { specificNewsModel in
-            print("Specific News is: \(specificNewsModel)")
-        }.disposed(by: disposeBag)
-    }
-    
     func setupObservable() {
-        fetchTopHeadline()
-        fetchSpecificNews()
+        newsTableView.rx.setDelegate(self).disposed(by: disposeBag)
+        viewModel.newsDataObservable.bind(to: newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
+            cell.sectionNewsTab.setText = "Apple"
+        }
     }
+
     
 }
 
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "newsTableCell", for: indexPath) as? NewsTableViewCell else { return UITableViewCell() }
-        return cell
-    }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 300
+//extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+//    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 0
 //    }
-    
-}
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "newsTableCell", for: indexPath) as? NewsTableViewCell else { return UITableViewCell() }
+//        return cell
+//    }
+//    
+////    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+////        return 300
+////    }
+//    
+//}
