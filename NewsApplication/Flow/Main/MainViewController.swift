@@ -28,26 +28,30 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
     override func viewDidLoad() {
         print("Hello Come To Main News page")
         setupObservable()
-        viewModel.fetchTopHeadlineAll(country: "th")
+        viewModel.fetchTopHeadlineAll(country: "us")
     }
     
     func setupObservable() {
         newsTableView.rx.setDelegate(self).disposed(by: disposeBag)
-        viewModel.newsDataObservable.bind(to: newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
-            self.dataToDisplay = item.articles.filter { $0.urlToImage?.isEmpty != nil }
-            if !self.dataToDisplay.isEmpty {
-                if row == 0 {
-                    cell.sectionNewsTab.setText = "Treading News"
-                } else if row == 1 {
-                    cell.sectionNewsTab.setText = "Apple News"
+
+        viewModel.newsDataObservable.subscribe { newsModel in
+            
+            self.viewModel.newsDataObservable.bind(to: self.newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
+                self.dataToDisplay = item.articles.filter { $0.urlToImage?.isEmpty != nil }
+                if !self.dataToDisplay.isEmpty {
+                    if row == 0 {
+                        cell.sectionNewsTab.setText = "Treading News"
+                    } else if row == 1 {
+                        cell.sectionNewsTab.setText = "Apple News"
+                    }
+                    cell.setupNewsCollection(with: Observable.just(item.articles.filter { $0.urlToImage?.isEmpty != nil}))
+                    
+                    cell.articleSelected.subscribe(onNext: { articel in
+                        self.openWebNews(url: articel.url)
+                    }).disposed(by: self.disposeBag)
                 }
-                cell.setupNewsCollection(with: Observable.just(item.articles.filter { $0.urlToImage?.isEmpty != nil}))
-                cell.articleSelected.subscribe(onNext: { articel in
-                    self.openWebNews(url: articel.url)
-                }).disposed(by: self.disposeBag)
-            } else {
-                
             }
+            self.viewModel.fetchNewsSpecific(source: "Apple")
         }
     }
 
