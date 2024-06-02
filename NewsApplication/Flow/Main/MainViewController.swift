@@ -9,8 +9,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
-    
+class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, SectionNewsDelegate {
     var viewModel = MainViewModel()
     private let disposeBag = DisposeBag()
     var allData: [NewsModel] = []
@@ -28,6 +27,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
     
     override func viewDidLoad() {
         print("Hello Come To Main News page")
+        
         setupObservable()
         viewModel.fetchTopHeadlineAll(country: "us")
     }
@@ -43,6 +43,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
         self.newsTableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.viewModel.newsDataObservable.bind(to: self.newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
             self.dataToDisplay = item.articles.filter { $0.urlToImage?.isEmpty != nil }
+            cell.sectionNewsTab.delegate = self
             if !self.dataToDisplay.isEmpty {
                 cell.sectionNewsTab.setText = "\(item.topic ?? "") News Topic"
                 cell.setupNewsCollection(with: Observable.just(item.articles.filter { $0.urlToImage?.isEmpty != nil}))
@@ -56,33 +57,17 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
         
     }
     
-//    func setupObservable() {
-//        newsTableView.rx.setDelegate(self).disposed(by: disposeBag)
-//        viewModel.newsDataObservable.bind(to: newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
-//                    self.dataToDisplay = item.articles.filter { $0.urlToImage?.isEmpty != nil }
-//                    if !self.dataToDisplay.isEmpty {
-//                        if row == 0 {
-//                            cell.sectionNewsTab.setText = "Treading News"
-//                        } else if row == 1 {
-//                            cell.sectionNewsTab.setText = "Apple News"
-//                        }
-//                        cell.setupNewsCollection(with: Observable.just(item.articles.filter { $0.urlToImage?.isEmpty != nil}))
-//                        cell.articleSelected.subscribe(onNext: { articel in
-//                            self.openWebNews(url: articel.url)
-//                        }).disposed(by: self.disposeBag)
-//                    } else {
-//
-//                    }
-//                }
-//        self.viewModel.fetchNewsSpecific(source: "Apple")
-//    }
-
-    
     private func openWebNews(url: String) {
         if let url = URL(string: url) {
             UIApplication.shared.openURL(url)
         } else { return }
         
+    }
+    
+//    MARK: -Delegate From SectionNewsTab
+    func buttonSellAllTapped() {
+        let destinationVC = TopicNewsViewController(nibName: "TopicNews", bundle: nil)
+        self.navigationController?.pushViewController(destinationVC, animated: true)
     }
     
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
