@@ -26,7 +26,7 @@ class TopicNewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = self.articleModel?.topic
+        self.title = "\(self.articleModel?.topic) News Topic"
         print("TopicNewsViewController")
     }
     
