@@ -13,14 +13,10 @@ class MainViewModel {
     var network = Network()
     
     var topHeadlinesAll: PublishSubject<NewsModel> = PublishSubject()
-    var specificNews: PublishSubject<NewsModel> = PublishSubject()
     var newsData: PublishSubject<[NewsModel]> = PublishSubject()
     
     var topHeadlinesAllObservable: Observable<NewsModel> {
         topHeadlinesAll.asObservable()
-    }
-    var specificNewsObservable: Observable<NewsModel> {
-        specificNews.asObservable()
     }
     
     var newsDataObservable: Observable<[NewsModel]> {

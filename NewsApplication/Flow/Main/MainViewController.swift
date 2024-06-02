@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, SectionNewsDelegate {
     var viewModel = MainViewModel()
+    
     private let disposeBag = DisposeBag()
     var allData: [NewsModel] = []
     var topHeadlineNews: NewsModel?
@@ -27,7 +28,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
     
     override func viewDidLoad() {
         print("Hello Come To Main News page")
-        
         setupObservable()
         viewModel.fetchTopHeadlineAll(country: "us")
     }
@@ -44,6 +44,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
         self.viewModel.newsDataObservable.bind(to: self.newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
             self.dataToDisplay = item.articles.filter { $0.urlToImage?.isEmpty != nil }
             cell.sectionNewsTab.delegate = self
+            cell.sectionNewsTab.index = row
             if !self.dataToDisplay.isEmpty {
                 cell.sectionNewsTab.setText = "\(item.topic ?? "") News Topic"
                 cell.setupNewsCollection(with: Observable.just(item.articles.filter { $0.urlToImage?.isEmpty != nil}))
@@ -53,7 +54,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
             } else {
                 
             }
-        }
+        }.disposed(by: disposeBag)
         
     }
     
@@ -65,7 +66,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
     }
     
 //    MARK: -Delegate From SectionNewsTab
-    func buttonSellAllTapped() {
+    func buttonSellAllTapped(at index: Int) {
         let destinationVC = TopicNewsViewController(nibName: "TopicNews", bundle: nil)
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }

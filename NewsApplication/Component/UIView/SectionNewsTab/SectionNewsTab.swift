@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol SectionNewsDelegate: AnyObject {
-    func buttonSellAllTapped()
+    func buttonSellAllTapped(at index: Int)
 }
 
 
@@ -17,6 +17,7 @@ class SectionNewsTab: UIView {
     
 //    MARK: -Properties
     weak var delegate: SectionNewsDelegate?
+    var index = 0
     var setText: String = "" {
         didSet {
             titleLabel.text = setText
@@ -39,7 +40,7 @@ class SectionNewsTab: UIView {
     
 
     @IBAction func seeAllNews(_ sender: Any) {
-        delegate?.buttonSellAllTapped()
+        delegate?.buttonSellAllTapped(at: index)
     }
     
     override init(frame: CGRect) {
