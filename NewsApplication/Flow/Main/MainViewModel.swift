@@ -33,8 +33,7 @@ class MainViewModel {
         Task {
             do {
               let newsModel = try await network.callTopHeadline(country: country)
-                self.newsArray.append(newsModel)
-                fetchNewsSpecific(source: "Apple")
+                topHeadlinesAll.onNext(newsModel)
             } catch {
                 print("Error is: \(error.localizedDescription)")
             }
@@ -44,7 +43,8 @@ class MainViewModel {
     func fetchNewsSpecific(source: String) {
         Task {
             do {
-                let newsModel = try await network.callTopHeadlineSpecific(source: source)
+                var newsModel = try await network.callTopHeadlineSpecific(source: source)
+                newsModel.topic = source
                 self.newsArray.append(newsModel)
                 newsData.onNext(self.newsArray)
             } catch {

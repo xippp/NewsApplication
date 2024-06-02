@@ -17,6 +17,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
     var topHeadlineNews: NewsModel?
     var specificNews: NewsModel?
     var dataToDisplay: [Article] = []
+    var topicNews: [String] = ["Apple", "Tesla", "Crypto"]
 //    MARK: -IBOutlet Properties
     
     @IBOutlet weak var newsTableView: UITableView! {
@@ -31,26 +32,50 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
         viewModel.fetchTopHeadlineAll(country: "us")
     }
     
-    func setupObservable() {
-        newsTableView.rx.setDelegate(self).disposed(by: disposeBag)
-        viewModel.newsDataObservable.bind(to: newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
-                    self.dataToDisplay = item.articles.filter { $0.urlToImage?.isEmpty != nil }
-                    if !self.dataToDisplay.isEmpty {
-                        if row == 0 {
-                            cell.sectionNewsTab.setText = "Treading News"
-                        } else if row == 1 {
-                            cell.sectionNewsTab.setText = "Apple News"
-                        }
-                        cell.setupNewsCollection(with: Observable.just(item.articles.filter { $0.urlToImage?.isEmpty != nil}))
-                        cell.articleSelected.subscribe(onNext: { articel in
-                            self.openWebNews(url: articel.url)
-                        }).disposed(by: self.disposeBag)
-                    } else {
-
-                    }
-                }
-        self.viewModel.fetchNewsSpecific(source: "Apple")
+    private func setupObservable() {
+        viewModel.topHeadlinesAllObservable.subscribe { breakingNews in
+            print(breakingNews)
+            for topic in self.topicNews {
+                self.viewModel.fetchNewsSpecific(source: topic)
+            }
+        }.disposed(by: disposeBag)
+        
+        self.newsTableView.rx.setDelegate(self).disposed(by: self.disposeBag)
+        self.viewModel.newsDataObservable.bind(to: self.newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
+            self.dataToDisplay = item.articles.filter { $0.urlToImage?.isEmpty != nil }
+            if !self.dataToDisplay.isEmpty {
+                cell.sectionNewsTab.setText = "\(item.topic ?? "") News Topic"
+                cell.setupNewsCollection(with: Observable.just(item.articles.filter { $0.urlToImage?.isEmpty != nil}))
+                cell.articleSelected.subscribe(onNext: { articel in
+                    self.openWebNews(url: articel.url)
+                }).disposed(by: self.disposeBag)
+            } else {
+                
+            }
+        }
+        
     }
+    
+//    func setupObservable() {
+//        newsTableView.rx.setDelegate(self).disposed(by: disposeBag)
+//        viewModel.newsDataObservable.bind(to: newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
+//                    self.dataToDisplay = item.articles.filter { $0.urlToImage?.isEmpty != nil }
+//                    if !self.dataToDisplay.isEmpty {
+//                        if row == 0 {
+//                            cell.sectionNewsTab.setText = "Treading News"
+//                        } else if row == 1 {
+//                            cell.sectionNewsTab.setText = "Apple News"
+//                        }
+//                        cell.setupNewsCollection(with: Observable.just(item.articles.filter { $0.urlToImage?.isEmpty != nil}))
+//                        cell.articleSelected.subscribe(onNext: { articel in
+//                            self.openWebNews(url: articel.url)
+//                        }).disposed(by: self.disposeBag)
+//                    } else {
+//
+//                    }
+//                }
+//        self.viewModel.fetchNewsSpecific(source: "Apple")
+//    }
 
     
     private func openWebNews(url: String) {
