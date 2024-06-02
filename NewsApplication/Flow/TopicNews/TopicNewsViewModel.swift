@@ -6,8 +6,18 @@
 //
 
 import Foundation
+import RxSwift
 
 class TopicNewsViewModel {
     
+    var selectNews: PublishSubject<Article> = PublishSubject()
+
+    var selectNewsObservable: Observable<Article> {
+        selectNews.asObservable()
+    }
+    
+    func getNews(articel: Article) {
+        selectNews.onNext(articel)
+    }
     
 }

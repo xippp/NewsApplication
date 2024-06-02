@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailNewsViewController" customModule="NewsApplication" customModuleProvider="target">
+            <connections>
+                <outlet property="cornerView" destination="xyw-fv-kQK" id="yrV-4i-PXy"/>
+                <outlet property="detailNews" destination="H18-ne-fHL" id="QXU-ag-bkt"/>
+                <outlet property="newsImage" destination="iYO-XU-G2x" id="NEo-p9-VDx"/>
+                <outlet property="titleNews" destination="h0a-s7-GyY" id="j9M-or-e3W"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Bmx-Av-QBE"/>
+                <outlet property="webButton" destination="65O-JZ-dKY" id="TGb-NX-BZa"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2IL-XO-G4L">
+                    <rect key="frame" x="0.0" y="79" width="375" height="554"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xyw-fv-kQK">
+                            <rect key="frame" x="20" y="0.0" width="335" height="200"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="iYO-XU-G2x">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="200"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="iYO-XU-G2x" firstAttribute="leading" secondItem="xyw-fv-kQK" secondAttribute="leading" id="4ZJ-Fh-1Ui"/>
+                                <constraint firstAttribute="height" constant="200" id="9RV-Xj-0Mz"/>
+                                <constraint firstAttribute="bottom" secondItem="iYO-XU-G2x" secondAttribute="bottom" id="AKe-sZ-GdG"/>
+                                <constraint firstAttribute="trailing" secondItem="iYO-XU-G2x" secondAttribute="trailing" id="ins-41-6dn"/>
+                                <constraint firstItem="iYO-XU-G2x" firstAttribute="top" secondItem="xyw-fv-kQK" secondAttribute="top" id="jeW-df-Pj2"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HhH-dD-uFl">
+                            <rect key="frame" x="20" y="220" width="335" height="334"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uWB-3n-GPE">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="334"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0a-s7-GyY">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="20.333333333333332"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H18-ne-fHL">
+                                            <rect key="frame" x="0.0" y="30.333333333333314" width="335" height="303.66666666666669"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <color key="textColor" systemColor="labelColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65O-JZ-dKY">
+                                    <rect key="frame" x="260" y="293.66666666666663" width="75" height="40.333333333333314"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                    <connections>
+                                        <action selector="openWebNews:" destination="-1" eventType="touchUpInside" id="GAZ-KO-swW"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="uWB-3n-GPE" secondAttribute="trailing" id="FsC-5z-sXc"/>
+                                <constraint firstItem="65O-JZ-dKY" firstAttribute="trailing" secondItem="uWB-3n-GPE" secondAttribute="trailing" id="bTa-dy-HBz"/>
+                                <constraint firstAttribute="bottom" secondItem="uWB-3n-GPE" secondAttribute="bottom" id="er2-62-C15"/>
+                                <constraint firstItem="65O-JZ-dKY" firstAttribute="bottom" secondItem="uWB-3n-GPE" secondAttribute="bottom" id="m34-SG-ozN"/>
+                                <constraint firstItem="uWB-3n-GPE" firstAttribute="top" secondItem="HhH-dD-uFl" secondAttribute="top" id="sUS-wj-GrZ"/>
+                                <constraint firstItem="uWB-3n-GPE" firstAttribute="leading" secondItem="HhH-dD-uFl" secondAttribute="leading" id="vTg-xX-blj"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="HhH-dD-uFl" firstAttribute="leading" secondItem="2IL-XO-G4L" secondAttribute="leading" constant="20" id="Iud-fd-WS1"/>
+                        <constraint firstAttribute="trailing" secondItem="xyw-fv-kQK" secondAttribute="trailing" constant="20" id="T7C-Os-xgX"/>
+                        <constraint firstAttribute="trailing" secondItem="HhH-dD-uFl" secondAttribute="trailing" constant="20" id="TBX-0h-vmZ"/>
+                        <constraint firstItem="xyw-fv-kQK" firstAttribute="leading" secondItem="2IL-XO-G4L" secondAttribute="leading" constant="20" id="fQj-6J-aw6"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="2IL-XO-G4L" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="9gB-zV-EB3"/>
+                <constraint firstItem="2IL-XO-G4L" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Nmf-ZC-fx7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="2IL-XO-G4L" secondAttribute="bottom" id="t9a-gG-npC"/>
+                <constraint firstItem="2IL-XO-G4L" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="woa-ug-J5c"/>
+            </constraints>
+            <point key="canvasLocation" x="132" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="placeholderImage" width="800" height="600"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
