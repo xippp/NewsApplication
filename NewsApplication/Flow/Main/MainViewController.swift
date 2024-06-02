@@ -9,13 +9,14 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-class MainViewController: UIViewController, UIScrollViewDelegate {
+class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
     
     var viewModel = MainViewModel()
     private let disposeBag = DisposeBag()
     var allData: [NewsModel] = []
     var topHeadlineNews: NewsModel?
     var specificNews: NewsModel?
+    var dataToDisplay: [Article] = []
 //    MARK: -IBOutlet Properties
     
     @IBOutlet weak var newsTableView: UITableView! {
@@ -33,15 +34,20 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     func setupObservable() {
         newsTableView.rx.setDelegate(self).disposed(by: disposeBag)
         viewModel.newsDataObservable.bind(to: newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
-            if row == 0 {
-                cell.sectionNewsTab.setText = "Treading News"
-            } else if row == 1 {
-                cell.sectionNewsTab.setText = "Apple News"
+            self.dataToDisplay = item.articles.filter { $0.urlToImage?.isEmpty != nil }
+            if !self.dataToDisplay.isEmpty {
+                if row == 0 {
+                    cell.sectionNewsTab.setText = "Treading News"
+                } else if row == 1 {
+                    cell.sectionNewsTab.setText = "Apple News"
+                }
+                cell.setupNewsCollection(with: Observable.just(item.articles.filter { $0.urlToImage?.isEmpty != nil}))
+                cell.articleSelected.subscribe(onNext: { articel in
+                    self.openWebNews(url: articel.url)
+                }).disposed(by: self.disposeBag)
+            } else {
+                
             }
-            cell.setupNewsCollection(with: Observable.just(item.articles))
-            cell.articleSelected.subscribe(onNext: { articel in
-                self.openWebNews(url: articel.url)
-            }).disposed(by: self.disposeBag)
         }
     }
 
@@ -52,6 +58,15 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         } else { return }
         
     }
+    
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            if self.dataToDisplay.isEmpty {
+                return 0
+            } else {
+                return UITableView.automaticDimension
+            }
+            
+        }
     
 }
 
@@ -66,8 +81,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
 //        return cell
 //    }
 //    
-////    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-////        return 300
-////    }
+
 //    
 //}
