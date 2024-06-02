@@ -18,6 +18,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
     var specificNews: NewsModel?
     var dataToDisplay: [Article] = []
     var topicNews: [String] = ["Apple", "Tesla", "Crypto"]
+    var test = NewsModel(status: "ok", totalResults: 10, articles: [], topic: "Test")
 //    MARK: -IBOutlet Properties
     
     @IBOutlet weak var newsTableView: UITableView! {
@@ -68,6 +69,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
 //    MARK: -Delegate From SectionNewsTab
     func buttonSellAllTapped(at index: Int) {
         let destinationVC = TopicNewsViewController(nibName: "TopicNews", bundle: nil)
+        destinationVC.mainModel = viewModel
+        destinationVC.setupObservable()
+        viewModel.getTopicNews(index: index)
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
     

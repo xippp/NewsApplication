@@ -11,6 +11,8 @@ import RxSwift
 import RxCocoa
 class TopicNewsViewController: UIViewController {
     
+    var mainModel: MainViewModel!
+    var viewModel = TopicNewsViewModel()
 //    MARK: -IBOutlet Properties
     
     @IBOutlet weak var newsTableView: UITableView! {
@@ -23,4 +25,11 @@ class TopicNewsViewController: UIViewController {
         super.viewDidLoad()
         print("TopicNewsViewController")
     }
+    
+    func setupObservable() {
+        mainModel.topicNewsObservable.subscribe { newsModel in
+            
+        }
+    }
+    
 }

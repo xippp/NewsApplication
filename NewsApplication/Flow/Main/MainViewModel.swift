@@ -10,10 +10,12 @@ import RxSwift
 import RxCocoa
 class MainViewModel {
     
+    var num = 0
     var network = Network()
     
     var topHeadlinesAll: PublishSubject<NewsModel> = PublishSubject()
     var newsData: PublishSubject<[NewsModel]> = PublishSubject()
+    var topicNewsSubject: PublishSubject<NewsModel> = PublishSubject()
     
     var topHeadlinesAllObservable: Observable<NewsModel> {
         topHeadlinesAll.asObservable()
@@ -21,6 +23,10 @@ class MainViewModel {
     
     var newsDataObservable: Observable<[NewsModel]> {
         newsData.asObservable()
+    }
+    
+    var topicNewsObservable: Observable<NewsModel> {
+        topicNewsSubject.asObservable()
     }
     
     var newsArray: [NewsModel] = []
@@ -47,6 +53,11 @@ class MainViewModel {
                 print("Error is: \(error.localizedDescription)")
             }
         }
+    }
+    
+    func getTopicNews(index: Int) {
+        let topicNews = self.newsArray[index]
+        topicNewsSubject.onNext(topicNews)
     }
     
 }
