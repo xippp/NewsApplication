@@ -29,6 +29,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
     
     override func viewDidLoad() {
         print("Hello Come To Main News page")
+        self.title = "News"
         setupObservable()
         viewModel.fetchTopHeadlineAll(country: "us")
     }
