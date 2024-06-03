@@ -22,13 +22,35 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="hZg-S3-Ajz">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="57"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L16-k3-MTG">
+                                <rect key="frame" x="0.0" y="7" width="300" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gl9-gc-7Bp">
+                                        <rect key="frame" x="10" y="0.0" width="280" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.207745738865174" green="0.207745738865174" blue="0.207745738865174" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="gl9-gc-7Bp" firstAttribute="leading" secondItem="L16-k3-MTG" secondAttribute="leading" constant="10" id="aen-9R-xcW"/>
+                                    <constraint firstAttribute="bottom" secondItem="gl9-gc-7Bp" secondAttribute="bottom" id="e5P-Fw-JWU"/>
+                                    <constraint firstItem="gl9-gc-7Bp" firstAttribute="top" secondItem="L16-k3-MTG" secondAttribute="top" id="kbS-kE-krE"/>
+                                    <constraint firstAttribute="height" constant="50" id="mbb-ZF-gZo"/>
+                                    <constraint firstAttribute="trailing" secondItem="gl9-gc-7Bp" secondAttribute="trailing" constant="10" id="nIo-CL-f96"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hZg-S3-Ajz" firstAttribute="leading" secondItem="TfL-Zg-eHi" secondAttribute="leading" id="3FU-uX-gPu"/>
                             <constraint firstAttribute="bottom" secondItem="hZg-S3-Ajz" secondAttribute="bottom" id="6bi-pb-nNf"/>
+                            <constraint firstAttribute="trailing" secondItem="L16-k3-MTG" secondAttribute="trailing" id="VnG-Ac-78m"/>
                             <constraint firstAttribute="trailing" secondItem="hZg-S3-Ajz" secondAttribute="trailing" id="hTN-4r-dUo"/>
+                            <constraint firstAttribute="bottom" secondItem="L16-k3-MTG" secondAttribute="bottom" id="iNB-rC-qB6"/>
                             <constraint firstItem="hZg-S3-Ajz" firstAttribute="top" secondItem="TfL-Zg-eHi" secondAttribute="top" id="lWc-fr-tb9"/>
+                            <constraint firstItem="L16-k3-MTG" firstAttribute="leading" secondItem="TfL-Zg-eHi" secondAttribute="leading" id="uCM-cA-eJg"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -44,6 +66,7 @@
             <connections>
                 <outlet property="imageNews" destination="hZg-S3-Ajz" id="ve0-D7-cH0"/>
                 <outlet property="roundCornerView" destination="TfL-Zg-eHi" id="rV9-aw-yRx"/>
+                <outlet property="titleNewsLabel" destination="gl9-gc-7Bp" id="fFV-pz-6Tr"/>
             </connections>
             <point key="canvasLocation" x="300.76335877862596" y="88.732394366197184"/>
         </collectionViewCell>

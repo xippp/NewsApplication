@@ -71,8 +71,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, SectionNewsDel
         
         viewModel.topHeadlinesAllObservable.bind(to: self.topBreakingCollection.rx.items(cellIdentifier: "newsCollectionCell", cellType: NewsCollectionViewCell.self)) { row, item, cell in
             cell.setImage = item.urlToImage ?? ""
-            
-            print(row)
+            cell.setTitle = item.title
         }.disposed(by: disposeBag)
         
         articleSelected.subscribe(onNext: { article in

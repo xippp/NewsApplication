@@ -22,6 +22,12 @@ class NewsCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var setTitle: String = "" {
+        didSet {
+            titleNewsLabel.text = setTitle
+        }
+    }
+    
     @IBOutlet weak var roundCornerView: UIView! {
         didSet {
             roundCornerView.layer.cornerRadius = 20
@@ -29,6 +35,11 @@ class NewsCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    @IBOutlet weak var titleNewsLabel: UILabel! {
+        didSet {
+            titleNewsLabel.textColor = .white
+        }
+    }
     @IBOutlet weak var imageNews: UIImageView!
     
     override func awakeFromNib() {

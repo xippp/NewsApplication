@@ -42,8 +42,8 @@ class NewsTableViewCell: UITableViewCell{
     func setupNewsCollection(with items: Observable<[Article]>) {
         self.newsModel = items.take(10)
         self.newsModel?.bind(to: newsCollectionView.rx.items(cellIdentifier: "newsCollectionCell", cellType: NewsCollectionViewCell.self)) { index, item, cell in
-            
             cell.setImage = item.urlToImage ?? ""
+            cell.setTitle = item.title
         }.disposed(by: disposeBag)
         
         newsCollectionView.rx.modelSelected(Article.self).bind(to: articleSelected).disposed(by: disposeBag)
