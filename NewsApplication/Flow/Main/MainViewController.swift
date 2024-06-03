@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, SectionNewsDelegate {
+class MainViewController: UIViewController, UIScrollViewDelegate, SectionNewsDelegate{
     var viewModel = MainViewModel()
     
     private let disposeBag = DisposeBag()
@@ -30,6 +30,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
     @IBOutlet weak var topBreakingCollection: UICollectionView! {
         didSet {
             topBreakingCollection.register(UINib(nibName: "NewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "newsCollectionCell")
+            topBreakingCollection.delegate = self
         }
     }
     
@@ -43,15 +44,20 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
     }
     
     private func setupObservable() {
+        viewModel.topHeadlinesAllObservable.subscribe { article in
+            DispatchQueue.main.async {
+                self.pageControl.numberOfPages = article.count
+            }
+            for topic in self.topicNews {
+                self.viewModel.fetchNewsSpecific(source: topic)
+            }
+        }.disposed(by: disposeBag)
+        
         viewModel.topHeadlinesAllObservable.bind(to: self.topBreakingCollection.rx.items(cellIdentifier: "newsCollectionCell", cellType: NewsCollectionViewCell.self)) { row, item, cell in
             cell.setImage = item.urlToImage ?? ""
-        }
-//        viewModel.topHeadlinesAllObservable.subscribe { breakingNews in
-//            
-//            for topic in self.topicNews {
-//                self.viewModel.fetchNewsSpecific(source: topic)
-//            }
-//        }.disposed(by: disposeBag)
+            
+            print(row)
+        }.disposed(by: disposeBag)
         
         articleSelected.subscribe(onNext: { article in
             self.routeToDetail(article: article)
@@ -99,28 +105,23 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
     
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            if self.dataToDisplay.isEmpty {
-                return 0
-            } else {
-                return UITableView.automaticDimension
-            }
-            
-        }
     
+    
+
 }
 
-//extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 0
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "newsTableCell", for: indexPath) as? NewsTableViewCell else { return UITableViewCell() }
-//        return cell
-//    }
-//    
-
-//    
-//}
+extension MainViewController: UITableViewDelegate, UICollectionViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if self.dataToDisplay.isEmpty {
+            return 0
+        } else {
+            return UITableView.automaticDimension
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.pageControl.currentPage = indexPath.row
+    }
+}

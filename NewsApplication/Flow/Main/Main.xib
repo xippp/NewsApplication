@@ -25,38 +25,38 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CfZ-FN-VMH">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="250"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="280"/>
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="69Y-eT-qGL">
-                                    <rect key="frame" x="46.666666666666657" y="50" width="300" height="150"/>
+                                    <rect key="frame" x="21.666666666666657" y="40" width="350" height="200"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="300" id="1cP-Wo-kCr"/>
-                                        <constraint firstAttribute="height" constant="150" id="nfp-Pr-eph"/>
+                                        <constraint firstAttribute="width" constant="350" id="1cP-Wo-kCr"/>
+                                        <constraint firstAttribute="height" constant="200" id="nfp-Pr-eph"/>
                                     </constraints>
                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Dmn-FR-5dI">
-                                        <size key="itemSize" width="300" height="150"/>
+                                        <size key="itemSize" width="350" height="200"/>
                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                 </collectionView>
-                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="DSZ-P0-svR">
-                                    <rect key="frame" x="20" y="210" width="353" height="25.666666666666657"/>
+                                <pageControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="DSZ-P0-svR">
+                                    <rect key="frame" x="20" y="249.99999999999997" width="353" height="25.666666666666657"/>
                                 </pageControl>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor"/>
                             <constraints>
                                 <constraint firstItem="DSZ-P0-svR" firstAttribute="leading" secondItem="CfZ-FN-VMH" secondAttribute="leading" constant="20" id="18d-I0-Ej8"/>
                                 <constraint firstItem="69Y-eT-qGL" firstAttribute="centerY" secondItem="CfZ-FN-VMH" secondAttribute="centerY" id="9bE-KX-fhl"/>
-                                <constraint firstAttribute="height" constant="250" id="9qN-4h-HZ0"/>
+                                <constraint firstAttribute="height" constant="280" id="9qN-4h-HZ0"/>
                                 <constraint firstItem="DSZ-P0-svR" firstAttribute="top" secondItem="69Y-eT-qGL" secondAttribute="bottom" constant="10" id="Vuo-4g-tWh"/>
                                 <constraint firstItem="69Y-eT-qGL" firstAttribute="centerX" secondItem="CfZ-FN-VMH" secondAttribute="centerX" id="ZVx-Px-vQd"/>
                                 <constraint firstAttribute="trailing" secondItem="DSZ-P0-svR" secondAttribute="trailing" constant="20" id="nui-aE-OEP"/>
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ctt-cA-0JZ">
-                            <rect key="frame" x="0.0" y="250" width="393" height="509"/>
+                            <rect key="frame" x="0.0" y="280" width="393" height="479"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                     </subviews>
@@ -76,6 +76,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
