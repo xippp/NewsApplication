@@ -12,7 +12,7 @@ class Network {
     var serverURL = "https://newsapi.org"
     
     func callTopHeadline(country: String) async throws -> NewsModel {
-        let url = "\(serverURL)/v2/top-headlines?country=\(country)&pageSize=20&category=technology&apiKey=\(Configuration.shared.apiKey)"
+        let url = "\(serverURL)/v2/top-headlines?country=\(country)&pageSize=10&category=technology&apiKey=\(Configuration.shared.apiKey)"
         guard let url = URL(string: url) else { throw URLError(.badURL) }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

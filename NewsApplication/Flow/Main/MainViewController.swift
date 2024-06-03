@@ -17,8 +17,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate, SectionNewsDel
     var topHeadlineNews: NewsModel?
     var specificNews: NewsModel?
     var dataToDisplay: [Article] = []
+    var dataTopBreakingNews: [Article] = []
     var topicNews: [String] = ["Apple", "Tesla", "Crypto"]
     let articleSelected = PublishSubject<Article>()
+    var timer: Timer?
+    var currentCellIndex = 0
 //    MARK: -IBOutlet Properties
     
     @IBOutlet weak var newsTableView: UITableView! {
@@ -39,13 +42,26 @@ class MainViewController: UIViewController, UIScrollViewDelegate, SectionNewsDel
     override func viewDidLoad() {
         print("Hello Come To Main News page")
         self.title = "News"
+        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
         setupObservable()
         viewModel.fetchTopHeadlineAll(country: "us")
+    }
+    
+    @objc func slideToNext() {
+        if self.dataTopBreakingNews.count != 0 {
+            if currentCellIndex < self.dataTopBreakingNews.count-1 {
+                currentCellIndex = currentCellIndex + 1
+            } else {
+                currentCellIndex = 0
+            }
+            topBreakingCollection.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+        }
     }
     
     private func setupObservable() {
         viewModel.topHeadlinesAllObservable.subscribe { article in
             DispatchQueue.main.async {
+                self.dataTopBreakingNews = article
                 self.pageControl.numberOfPages = article.count
             }
             for topic in self.topicNews {
@@ -123,5 +139,6 @@ extension MainViewController: UITableViewDelegate, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.pageControl.currentPage = indexPath.row
+        self.currentCellIndex = indexPath.row
     }
 }
