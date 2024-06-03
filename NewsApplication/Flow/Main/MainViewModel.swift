@@ -16,6 +16,7 @@ class MainViewModel {
     var topHeadlinesAll: PublishSubject<NewsModel> = PublishSubject()
     var newsData: PublishSubject<[NewsModel]> = PublishSubject()
     var topicNewsSubject: PublishSubject<NewsModel> = PublishSubject()
+    var detailsNewsSubject: PublishSubject<Article> = PublishSubject()
     
     var topHeadlinesAllObservable: Observable<NewsModel> {
         topHeadlinesAll.asObservable()
@@ -27,6 +28,10 @@ class MainViewModel {
     
     var topicNewsObservable: Observable<NewsModel> {
         topicNewsSubject.asObservable()
+    }
+    
+    var detailsNewsObservable: Observable<Article> {
+        detailsNewsSubject.asObservable()
     }
     
     var newsArray: [NewsModel] = []

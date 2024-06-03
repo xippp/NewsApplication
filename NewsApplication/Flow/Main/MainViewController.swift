@@ -18,7 +18,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
     var specificNews: NewsModel?
     var dataToDisplay: [Article] = []
     var topicNews: [String] = ["Apple", "Tesla", "Crypto"]
-    var test = NewsModel(status: "ok", totalResults: 10, articles: [], topic: "Test")
+    let articleSelected = PublishSubject<Article>()
 //    MARK: -IBOutlet Properties
     
     @IBOutlet weak var newsTableView: UITableView! {
@@ -42,21 +42,25 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
             }
         }.disposed(by: disposeBag)
         
+        articleSelected.subscribe(onNext: { article in
+            self.routeToDetail(article: article)
+        }).disposed(by: self.disposeBag)
+        
         self.newsTableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.viewModel.newsDataObservable.bind(to: self.newsTableView.rx.items(cellIdentifier: "newsTableCell", cellType: NewsTableViewCell.self)) { row, item, cell in
             self.dataToDisplay = item.articles.filter { $0.urlToImage?.isEmpty != nil }
             cell.sectionNewsTab.delegate = self
             cell.sectionNewsTab.index = row
+            cell.articleSelected = self.articleSelected
             if !self.dataToDisplay.isEmpty {
                 cell.sectionNewsTab.setText = "\(item.topic ?? "") News Topic"
                 cell.setupNewsCollection(with: Observable.just(item.articles.filter { $0.urlToImage?.isEmpty != nil}))
-                cell.articleSelected.subscribe(onNext: { articel in
-                    self.openWebNews(url: articel.url)
-                }).disposed(by: self.disposeBag)
+                
             } else {
                 
             }
         }.disposed(by: disposeBag)
+        
         
     }
     
@@ -65,6 +69,14 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
             UIApplication.shared.openURL(url)
         } else { return }
         
+    }
+    
+    private func routeToDetail(article: Article) {
+        let destinationVC = DetailNewsViewController(nibName: "DetailNews", bundle: nil)
+        destinationVC.mainModel = viewModel
+        destinationVC.setupObservable()
+        viewModel.detailsNewsSubject.onNext(article)
+        self.navigationController?.pushViewController(destinationVC, animated: true)
     }
     
 //    MARK: -Delegate From SectionNewsTab

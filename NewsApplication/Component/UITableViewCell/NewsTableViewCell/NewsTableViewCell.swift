@@ -13,7 +13,7 @@ class NewsTableViewCell: UITableViewCell{
     
     var newsModel: Observable<[Article]>?
     var disposeBag = DisposeBag()
-    let articleSelected = PublishSubject<Article>()
+    var articleSelected = PublishSubject<Article>()
 //    MARK: -IBOutlet Properties
     @IBOutlet weak var sectionNewsTab: SectionNewsTab!
     

@@ -14,6 +14,8 @@ class DetailNewsViewController: UIViewController {
     
     var topicModel: TopicNewsViewModel?
     var articleData: Article?
+    var mainModel: MainViewModel?
+    var disposeBag = DisposeBag()
 //    MARK: -IBOutlet Properties
     
     @IBOutlet weak var cornerView: UIView! {
@@ -48,7 +50,10 @@ class DetailNewsViewController: UIViewController {
     func setupObservable() {
         topicModel?.selectNewsObservable.subscribe(onNext: { article in
             self.articleData = article
-        })
+        }).disposed(by: disposeBag)
+        mainModel?.detailsNewsObservable.subscribe(onNext: { article in
+            self.articleData = article
+        }).disposed(by: disposeBag)
     }
     
     private func setupUI() {
