@@ -19,10 +19,22 @@ class NewsImageTableTableViewCell: UITableViewCell {
         }
     }
     
+    var setTitle: String = "" {
+        didSet {
+            titleNewsLabel.text = setTitle
+        }
+    }
+    
     @IBOutlet weak var cornerView: UIView! {
         didSet {
             cornerView.layer.cornerRadius = 20
             cornerView.layer.masksToBounds = true
+        }
+    }
+    
+    @IBOutlet weak var titleNewsLabel: UILabel! {
+        didSet {
+            titleNewsLabel.textColor = .white
         }
     }
     

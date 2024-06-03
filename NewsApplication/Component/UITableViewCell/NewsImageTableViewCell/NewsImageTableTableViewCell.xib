@@ -23,13 +23,35 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="wUy-oc-mVc">
                                 <rect key="frame" x="0.0" y="0.0" width="475" height="200"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kw9-6n-FQM">
+                                <rect key="frame" x="0.0" y="140" width="475" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eEE-x7-0dp">
+                                        <rect key="frame" x="10" y="0.0" width="455" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.20784313725490194" green="0.20784313725490194" blue="0.20784313725490194" alpha="0.69728876581255173" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="eEE-x7-0dp" firstAttribute="top" secondItem="Kw9-6n-FQM" secondAttribute="top" id="9if-Sf-hgu"/>
+                                    <constraint firstAttribute="trailing" secondItem="eEE-x7-0dp" secondAttribute="trailing" constant="10" id="W79-ic-aNX"/>
+                                    <constraint firstItem="eEE-x7-0dp" firstAttribute="leading" secondItem="Kw9-6n-FQM" secondAttribute="leading" constant="10" id="bbN-2P-LlT"/>
+                                    <constraint firstAttribute="bottom" secondItem="eEE-x7-0dp" secondAttribute="bottom" id="ebM-7x-o95"/>
+                                    <constraint firstAttribute="height" constant="60" id="ta9-is-OIo"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wUy-oc-mVc" firstAttribute="top" secondItem="Jw7-r8-Qxg" secondAttribute="top" id="0ug-6D-l93"/>
+                            <constraint firstItem="Kw9-6n-FQM" firstAttribute="leading" secondItem="Jw7-r8-Qxg" secondAttribute="leading" id="3C8-cJ-jge"/>
                             <constraint firstAttribute="height" constant="200" id="Hxo-BX-k80"/>
                             <constraint firstItem="wUy-oc-mVc" firstAttribute="leading" secondItem="Jw7-r8-Qxg" secondAttribute="leading" id="Ntr-co-FMR"/>
+                            <constraint firstAttribute="trailing" secondItem="Kw9-6n-FQM" secondAttribute="trailing" id="R0z-7l-Evy"/>
                             <constraint firstAttribute="bottom" secondItem="wUy-oc-mVc" secondAttribute="bottom" id="c98-k8-0jk"/>
+                            <constraint firstAttribute="bottom" secondItem="Kw9-6n-FQM" secondAttribute="bottom" id="ssd-On-iAx"/>
                             <constraint firstAttribute="trailing" secondItem="wUy-oc-mVc" secondAttribute="trailing" id="uxz-lC-BwV"/>
                         </constraints>
                     </view>
@@ -45,6 +67,7 @@
             <connections>
                 <outlet property="cornerView" destination="Jw7-r8-Qxg" id="tJ3-1S-hP0"/>
                 <outlet property="newsImage" destination="wUy-oc-mVc" id="CNz-aC-8Vo"/>
+                <outlet property="titleNewsLabel" destination="eEE-x7-0dp" id="nZA-Ul-5Sd"/>
             </connections>
             <point key="canvasLocation" x="155" y="71"/>
         </tableViewCell>

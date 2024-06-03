@@ -32,7 +32,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.207745738865174" green="0.207745738865174" blue="0.207745738865174" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.20784313725490194" green="0.20784313725490194" blue="0.20784313725490194" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="gl9-gc-7Bp" firstAttribute="leading" secondItem="L16-k3-MTG" secondAttribute="leading" constant="10" id="aen-9R-xcW"/>
                                     <constraint firstAttribute="bottom" secondItem="gl9-gc-7Bp" secondAttribute="bottom" id="e5P-Fw-JWU"/>

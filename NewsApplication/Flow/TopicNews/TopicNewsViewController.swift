@@ -46,6 +46,7 @@ extension TopicNewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "newsImageTableCell", for: indexPath) as? NewsImageTableTableViewCell else { return UITableViewCell() }
         cell.setImage = self.articleModel?.articles[indexPath.row].urlToImage
+        cell.setTitle = self.articleModel?.articles[indexPath.row].title ?? ""
         cell.selectionStyle = .none
         return cell
     }
