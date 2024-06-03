@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchFieldView" customModule="NewsApplication" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="mtd-gB-bwe">
+            <rect key="frame" x="0.0" y="0.0" width="571" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CuO-ZN-nvI" userLabel="ContainTextField">
+                    <rect key="frame" x="0.0" y="59" width="571" height="57"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search...." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9o-T4-V3Y">
+                            <rect key="frame" x="5" y="5" width="506" height="47"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                        </textField>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7xN-jn-oAe">
+                            <rect key="frame" x="531" y="19.666666666666671" width="20" height="18.333333333333336"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="sX2-45-1lf"/>
+                                <constraint firstAttribute="width" constant="20" id="wbP-34-A7f"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="J9o-T4-V3Y" firstAttribute="top" secondItem="CuO-ZN-nvI" secondAttribute="top" constant="5" id="OaQ-cw-PJJ"/>
+                        <constraint firstItem="J9o-T4-V3Y" firstAttribute="leading" secondItem="CuO-ZN-nvI" secondAttribute="leading" constant="5" id="SLp-5Y-MT1"/>
+                        <constraint firstAttribute="trailing" secondItem="7xN-jn-oAe" secondAttribute="trailing" constant="20" id="aAU-rW-1Xo"/>
+                        <constraint firstItem="7xN-jn-oAe" firstAttribute="centerY" secondItem="CuO-ZN-nvI" secondAttribute="centerY" id="enA-il-6L7"/>
+                        <constraint firstAttribute="bottom" secondItem="J9o-T4-V3Y" secondAttribute="bottom" constant="5" id="qvb-Wo-sOt"/>
+                        <constraint firstItem="7xN-jn-oAe" firstAttribute="leading" secondItem="J9o-T4-V3Y" secondAttribute="trailing" constant="20" id="xfM-KE-6Dg"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Kbu-T2-3Rj"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Kbu-T2-3Rj" firstAttribute="trailing" secondItem="CuO-ZN-nvI" secondAttribute="trailing" id="8re-nw-zWW"/>
+                <constraint firstItem="CuO-ZN-nvI" firstAttribute="leading" secondItem="Kbu-T2-3Rj" secondAttribute="leading" id="X79-hp-sS3"/>
+                <constraint firstItem="CuO-ZN-nvI" firstAttribute="bottom" secondItem="Kbu-T2-3Rj" secondAttribute="bottom" id="hc6-9H-FKb"/>
+                <constraint firstItem="Kbu-T2-3Rj" firstAttribute="top" secondItem="CuO-ZN-nvI" secondAttribute="top" id="zFH-p5-nQP"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="150.38167938931298" y="-240.84507042253523"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+    </resources>
+</document>

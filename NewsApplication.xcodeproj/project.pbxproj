@@ -13,6 +13,8 @@
 		DA06B3282C0DDF2900C09DB1 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA06B3272C0DDF2900C09DB1 /* MainTabbarViewController.swift */; };
 		DA06B32B2C0DDFA100C09DB1 /* SearchNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA06B32A2C0DDFA100C09DB1 /* SearchNewsViewController.swift */; };
 		DA06B32D2C0DDFCD00C09DB1 /* SearchNews.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA06B32C2C0DDFCD00C09DB1 /* SearchNews.xib */; };
+		DA06B3302C0DE0CD00C09DB1 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA06B32F2C0DE0CD00C09DB1 /* SearchFieldView.swift */; };
+		DA06B3322C0DE0D700C09DB1 /* SearchFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA06B3312C0DE0D700C09DB1 /* SearchFieldView.xib */; };
 		DA7C656F2C0A05AD00629404 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C656D2C0A05AD00629404 /* NewsCollectionViewCell.swift */; };
 		DA7C65702C0A05AD00629404 /* NewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA7C656E2C0A05AD00629404 /* NewsCollectionViewCell.xib */; };
 		DA7C65732C0A546900629404 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C65722C0A546900629404 /* Configuration.swift */; };
@@ -73,6 +75,8 @@
 		DA06B3272C0DDF2900C09DB1 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		DA06B32A2C0DDFA100C09DB1 /* SearchNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNewsViewController.swift; sourceTree = "<group>"; };
 		DA06B32C2C0DDFCD00C09DB1 /* SearchNews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchNews.xib; sourceTree = "<group>"; };
+		DA06B32F2C0DE0CD00C09DB1 /* SearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
+		DA06B3312C0DE0D700C09DB1 /* SearchFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchFieldView.xib; sourceTree = "<group>"; };
 		DA7C656D2C0A05AD00629404 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DA7C656E2C0A05AD00629404 /* NewsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCollectionViewCell.xib; sourceTree = "<group>"; };
 		DA7C65722C0A546900629404 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -165,6 +169,15 @@
 				DA06B32C2C0DDFCD00C09DB1 /* SearchNews.xib */,
 			);
 			path = SearchNews;
+			sourceTree = "<group>";
+		};
+		DA06B32E2C0DE0BB00C09DB1 /* SearchField */ = {
+			isa = PBXGroup;
+			children = (
+				DA06B32F2C0DE0CD00C09DB1 /* SearchFieldView.swift */,
+				DA06B3312C0DE0D700C09DB1 /* SearchFieldView.xib */,
+			);
+			path = SearchField;
 			sourceTree = "<group>";
 		};
 		DA7C656B2C0A058B00629404 /* UICollectionViewCell */ = {
@@ -320,6 +333,7 @@
 		DAA9BC362C09FB6F00622417 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				DA06B32E2C0DE0BB00C09DB1 /* SearchField */,
 				DAA9BC2F2C09F85200622417 /* SectionNewsTab */,
 			);
 			path = UIView;
@@ -475,6 +489,7 @@
 				DAA9BBFF2C09CDA400622417 /* Assets.xcassets in Resources */,
 				DAC6C2E92C0D02E7002471B4 /* DetailNews.xib in Resources */,
 				DA06B32D2C0DDFCD00C09DB1 /* SearchNews.xib in Resources */,
+				DA06B3322C0DE0D700C09DB1 /* SearchFieldView.xib in Resources */,
 				DAC6C2E62C0CF93E002471B4 /* NewsImageTableTableViewCell.xib in Resources */,
 				DAA9BC282C09F2CE00622417 /* Main.xib in Resources */,
 				DAA9BC022C09CDA400622417 /* Base in Resources */,
@@ -613,6 +628,7 @@
 				DAA9BC3C2C09FBC200622417 /* NewsTableViewCell.swift in Sources */,
 				DAA9BBF62C09CD9C00622417 /* AppDelegate.swift in Sources */,
 				DA7C65732C0A546900629404 /* Configuration.swift in Sources */,
+				DA06B3302C0DE0CD00C09DB1 /* SearchFieldView.swift in Sources */,
 				DA7C656F2C0A05AD00629404 /* NewsCollectionViewCell.swift in Sources */,
 				DA7C65782C0A567700629404 /* NewsModel.swift in Sources */,
 				DAAD95FD2C0CD28400E62030 /* TopicNewsViewModel.swift in Sources */,
