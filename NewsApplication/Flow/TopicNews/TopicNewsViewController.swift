@@ -13,7 +13,9 @@ class TopicNewsViewController: UIViewController {
     
     var mainModel: MainViewModel!
     var viewModel = TopicNewsViewModel()
-    var articleModel: NewsModel?
+    var topicModel: NewsModel?
+    var articleModel : [Article] = []
+    var disposedBag = DisposeBag()
 //    MARK: -IBOutlet Properties
 
     @IBOutlet weak var newsImageTableView: UITableView! {
@@ -26,37 +28,38 @@ class TopicNewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = self.articleModel?.topic ?? ""
+        self.title = self.topicModel?.topic ?? ""
         print("TopicNewsViewController")
     }
     
     func setupObservable() {
-        mainModel.topicNewsObservable.subscribe { newsModel in
-            self.articleModel = newsModel
-        }
+        mainModel.topicNewsObservable
+            .subscribe(onNext: { newsModel in
+                self.topicModel = newsModel
+                self.articleModel = self.topicModel?.articles.filter { $0.urlToImage != nil && !$0.urlToImage!.isEmpty } ?? []
+            }).disposed(by: disposedBag)
     }
 }
 
 extension TopicNewsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.articleModel?.articles.count ?? 0
+        return self.articleModel.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "newsImageTableCell", for: indexPath) as? NewsImageTableTableViewCell else { return UITableViewCell() }
-        cell.setImage = self.articleModel?.articles[indexPath.row].urlToImage
-        cell.setTitle = self.articleModel?.articles[indexPath.row].title ?? ""
+        cell.setImage = self.articleModel[indexPath.row].urlToImage
+        cell.setTitle = self.articleModel[indexPath.row].title ?? ""
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let articleModel = articleModel else { return }
         let destinationVC = DetailNewsViewController(nibName: "DetailNews", bundle: nil)
         destinationVC.topicModel = viewModel
         destinationVC.setupObservable()
-        viewModel.getNews(articel: articleModel.articles[indexPath.row])
+        viewModel.getNews(articel: self.articleModel[indexPath.row])
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
     
