@@ -13,12 +13,12 @@ class MainViewModel {
     var num = 0
     var network = Network()
     
-    var topHeadlinesAll: PublishSubject<NewsModel> = PublishSubject()
+    var topHeadlinesAll: PublishSubject<[Article]> = PublishSubject()
     var newsData: PublishSubject<[NewsModel]> = PublishSubject()
     var topicNewsSubject: PublishSubject<NewsModel> = PublishSubject()
     var detailsNewsSubject: PublishSubject<Article> = PublishSubject()
     
-    var topHeadlinesAllObservable: Observable<NewsModel> {
+    var topHeadlinesAllObservable: Observable<[Article]> {
         topHeadlinesAll.asObservable()
     }
     
@@ -40,7 +40,7 @@ class MainViewModel {
         Task {
             do {
               let newsModel = try await network.callTopHeadline(country: country)
-                topHeadlinesAll.onNext(newsModel)
+                topHeadlinesAll.onNext(newsModel.articles)
             } catch {
                 print("Error is: \(error.localizedDescription)")
             }

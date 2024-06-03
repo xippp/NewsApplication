@@ -27,6 +27,14 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
         }
     }
     
+    @IBOutlet weak var topBreakingCollection: UICollectionView! {
+        didSet {
+            topBreakingCollection.register(UINib(nibName: "NewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "newsCollectionCell")
+        }
+    }
+    
+    @IBOutlet weak var pageControl: UIPageControl!
+    
     override func viewDidLoad() {
         print("Hello Come To Main News page")
         self.title = "News"
@@ -35,12 +43,15 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDel
     }
     
     private func setupObservable() {
-        viewModel.topHeadlinesAllObservable.subscribe { breakingNews in
-            print(breakingNews)
-            for topic in self.topicNews {
-                self.viewModel.fetchNewsSpecific(source: topic)
-            }
-        }.disposed(by: disposeBag)
+        viewModel.topHeadlinesAllObservable.bind(to: self.topBreakingCollection.rx.items(cellIdentifier: "newsCollectionCell", cellType: NewsCollectionViewCell.self)) { row, item, cell in
+            cell.setImage = item.urlToImage ?? ""
+        }
+//        viewModel.topHeadlinesAllObservable.subscribe { breakingNews in
+//            
+//            for topic in self.topicNews {
+//                self.viewModel.fetchNewsSpecific(source: topic)
+//            }
+//        }.disposed(by: disposeBag)
         
         articleSelected.subscribe(onNext: { article in
             self.routeToDetail(article: article)
