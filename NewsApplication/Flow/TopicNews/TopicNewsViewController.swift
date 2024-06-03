@@ -29,7 +29,7 @@ class TopicNewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.topicModel?.topic ?? ""
-        print("TopicNewsViewController")
+        
     }
     
     func setupObservable() {

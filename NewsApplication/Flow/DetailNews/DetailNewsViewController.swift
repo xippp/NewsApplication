@@ -42,10 +42,10 @@ class DetailNewsViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad() 
         self.title = "Detail"
         setupUI()
-        print("DetailNewsViewController")
+        
     }
     
     func setupObservable() {

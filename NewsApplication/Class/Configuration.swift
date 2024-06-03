@@ -10,6 +10,6 @@ import Foundation
 class Configuration {
     static var shared = Configuration()
     
-    var apiKey = "478c0207a62248089bde000b1a6f8e8f" // API Key For Call API
+    var apiKey = "0289f28f209f46899ef9c7f79d57715d" // API Key For Call API
     
 }

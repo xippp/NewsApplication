@@ -40,7 +40,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, SectionNewsDel
     @IBOutlet weak var pageControl: UIPageControl!
     
     override func viewDidLoad() {
-        print("Hello Come To Main News page")
         self.title = "News"
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
         setupObservable()
