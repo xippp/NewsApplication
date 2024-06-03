@@ -74,6 +74,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate, SectionNewsDel
             cell.setTitle = item.title
         }.disposed(by: disposeBag)
         
+        topBreakingCollection.rx.modelSelected(Article.self).bind(to: articleSelected).disposed(by: disposeBag)
+        
         articleSelected.subscribe(onNext: { article in
             self.routeToDetail(article: article)
         }).disposed(by: self.disposeBag)

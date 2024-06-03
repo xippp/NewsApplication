@@ -36,7 +36,7 @@ class TopicNewsViewController: UIViewController {
         mainModel.topicNewsObservable
             .subscribe(onNext: { newsModel in
                 self.topicModel = newsModel
-                self.articleModel = self.topicModel?.articles.filter { $0.urlToImage != nil && !$0.urlToImage!.isEmpty } ?? []
+                self.articleModel = self.topicModel?.articles.filter { $0.urlToImage != nil} ?? []
             }).disposed(by: disposedBag)
     }
 }

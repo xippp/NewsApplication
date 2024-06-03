@@ -15,6 +15,7 @@ class DetailNewsViewController: UIViewController {
     var topicModel: TopicNewsViewModel?
     var articleData: Article?
     var mainModel: MainViewModel?
+    var searchModel: SearchNewsViewModel?
     var disposeBag = DisposeBag()
 //    MARK: -IBOutlet Properties
     
@@ -52,6 +53,9 @@ class DetailNewsViewController: UIViewController {
             self.articleData = article
         }).disposed(by: disposeBag)
         mainModel?.detailsNewsObservable.subscribe(onNext: { article in
+            self.articleData = article
+        }).disposed(by: disposeBag)
+        searchModel?.selectNewsObservable.subscribe(onNext: { article in
             self.articleData = article
         }).disposed(by: disposeBag)
     }
