@@ -36,7 +36,12 @@ class SectionNewsTab: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     
     
-//    MARK: -IBAction
+    @IBOutlet weak var sectionView: UIView! {
+        didSet {
+            sectionView.layer.cornerRadius = 5
+        }
+    }
+    //    MARK: -IBAction
     
 
     @IBAction func seeAllNews(_ sender: Any) {

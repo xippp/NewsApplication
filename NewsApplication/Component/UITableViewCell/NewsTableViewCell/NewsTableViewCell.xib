@@ -17,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVU-f0-45g" customClass="SectionNewsTab" customModule="NewsApplication" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="10" width="513" height="40"/>
+                        <rect key="frame" x="0.0" y="10" width="513" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="R2L-bi-Wcz"/>
+                            <constraint firstAttribute="height" constant="50" id="R2L-bi-Wcz"/>
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="rER-os-OAG">
-                        <rect key="frame" x="0.0" y="60" width="513" height="150"/>
+                        <rect key="frame" x="0.0" y="70" width="513" height="150"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="150" id="Eph-XI-X5t"/>
                         </constraints>

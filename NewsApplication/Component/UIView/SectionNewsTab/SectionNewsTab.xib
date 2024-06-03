@@ -4,12 +4,14 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SectionNewsTab" customModule="NewsApplication" customModuleProvider="target">
             <connections>
                 <outlet property="cornerTabView" destination="CMr-Fo-cqD" id="cTQ-55-rPV"/>
+                <outlet property="sectionView" destination="V6n-qh-wwk" id="h92-z7-H8F"/>
                 <outlet property="titleLabel" destination="nDl-P2-4dh" id="7a9-qy-62t"/>
             </connections>
         </placeholder>
@@ -21,15 +23,23 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMr-Fo-cqD" userLabel="CornerTab">
                     <rect key="frame" x="0.0" y="59" width="893" height="327"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6n-qh-wwk">
+                            <rect key="frame" x="10" y="148.66666666666666" width="10" height="30"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="10" id="NnT-Be-fUb"/>
+                                <constraint firstAttribute="height" constant="30" id="YVx-oC-IwV"/>
+                            </constraints>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDl-P2-4dh">
-                            <rect key="frame" x="20.000000000000004" y="153.33333333333334" width="41.333333333333343" height="20.333333333333343"/>
+                            <rect key="frame" x="30.000000000000004" y="153.33333333333334" width="41.333333333333343" height="20.333333333333343"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXg-5I-vic">
                             <rect key="frame" x="798" y="143" width="75" height="41"/>
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Sell All"/>
                             <connections>
@@ -37,11 +47,13 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.6987531329134522" green="0.68980303314112101" blue="0.70945275690137732" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" red="0.090196078431372548" green="0.27450980392156865" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="yXg-5I-vic" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nDl-P2-4dh" secondAttribute="trailing" constant="40" id="Lle-0d-Tm8"/>
+                        <constraint firstItem="V6n-qh-wwk" firstAttribute="leading" secondItem="CMr-Fo-cqD" secondAttribute="leading" constant="10" id="N3v-ZS-6zd"/>
                         <constraint firstItem="yXg-5I-vic" firstAttribute="centerY" secondItem="CMr-Fo-cqD" secondAttribute="centerY" id="OX8-Oy-dZH"/>
-                        <constraint firstItem="nDl-P2-4dh" firstAttribute="leading" secondItem="CMr-Fo-cqD" secondAttribute="leading" constant="20" id="TiA-do-D7A"/>
+                        <constraint firstItem="nDl-P2-4dh" firstAttribute="leading" secondItem="V6n-qh-wwk" secondAttribute="trailing" constant="10" id="QRS-gH-Ln9"/>
+                        <constraint firstItem="V6n-qh-wwk" firstAttribute="centerY" secondItem="CMr-Fo-cqD" secondAttribute="centerY" id="Xeb-IG-uuU"/>
                         <constraint firstAttribute="trailing" secondItem="yXg-5I-vic" secondAttribute="trailing" constant="20" id="fl7-ME-Ag3"/>
                         <constraint firstItem="nDl-P2-4dh" firstAttribute="centerY" secondItem="CMr-Fo-cqD" secondAttribute="centerY" id="mgg-6Q-mko"/>
                     </constraints>
@@ -58,4 +70,9 @@
             <point key="canvasLocation" x="417.55725190839695" y="-132.3943661971831"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
