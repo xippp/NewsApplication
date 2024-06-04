@@ -55,7 +55,7 @@ class MainViewModel {
                     let popupModel = PopupModel(status: newsModel.status, code: newsModel.code ?? "", message: newsModel.message ?? "")
                     showPopupErrorSubject.onNext(popupModel)
                 } else {
-                    topHeadlinesAll.onNext(newsModel.articles)
+                    topHeadlinesAll.onNext(newsModel.articles.filter { $0.urlToImage?.isEmpty != nil})
                 }
             } catch {
                 print("Error is: \(error.localizedDescription)")
