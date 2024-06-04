@@ -6,24 +6,47 @@
 //
 
 import XCTest
+import RxSwift
+import RxCocoa
 @testable import NewsApplication
 
 final class NewsApplicationTests: XCTestCase {
+    
+    var viewModel: MainViewModel!
+    var mockupNetwork: MockNetwork!
+    var disposeBag: DisposeBag!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        disposeBag = DisposeBag()
+        mockupNetwork = MockNetwork()
+        viewModel = MainViewModel(network: mockupNetwork)
+    }
+    
+    override func tearDown() {
+        disposeBag = nil
+        mockupNetwork = nil
+        viewModel = nil
+        super.tearDown()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    func testFetchTopHeadlineAll_Success() {
+        let expectation = self.expectation(description: "Success")
+        
+        let newsModel = NewsModel(status: "ok" ,code: "", message: "",articles: [Article(source: Source(id: "", name: ""), author: "", title: "Test", description: "", url: "", urlToImage: "", publishedAt: "", content: "")])
+        mockupNetwork.result = .success(newsModel)
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        viewModel.topHeadlinesAllObservable
+            .subscribe(onNext: { articles in
+                XCTAssertEqual(articles.count, 1)
+                XCTAssertEqual(articles.first?.title, "Test")
+                expectation.fulfill()
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.fetchTopHeadlineAll(country: "us")
+        
+        waitForExpectations(timeout: 5, handler: nil)
     }
 
     func testPerformanceExample() throws {

@@ -11,8 +11,11 @@ import RxCocoa
 class MainViewModel {
     
     var num = 0
-    var network = Network()
+    var network: Network
     
+    init(network: Network) {
+        self.network = network
+    }
 //    Subject FetchApi
     
     var showPopupErrorSubject: PublishSubject<PopupModel> = PublishSubject()

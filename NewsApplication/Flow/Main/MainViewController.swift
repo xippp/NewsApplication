@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 class MainViewController: UIViewController, UIScrollViewDelegate, SectionNewsDelegate{
-    var viewModel = MainViewModel()
+    var viewModel = MainViewModel(network: Network())
     
     private let disposeBag = DisposeBag()
     var allData: [NewsModel] = []
