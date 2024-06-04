@@ -12,8 +12,8 @@ struct NewsModel: Codable {
     let status: String
     let code: String?
     let message: String?
-    let totalResults: Int = 0
-    let articles: [Article] = []
+    var totalResults: Int = 0
+    var articles: [Article] = []
     var topic: String?
 }
 
