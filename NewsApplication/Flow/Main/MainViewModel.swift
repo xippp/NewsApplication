@@ -13,10 +13,18 @@ class MainViewModel {
     var num = 0
     var network = Network()
     
+//    Subject FetchApi
+    
+    var showPopupErrorSubject: PublishSubject<PopupModel> = PublishSubject()
+    
     var topHeadlinesAll: PublishSubject<[Article]> = PublishSubject()
     var newsData: PublishSubject<[NewsModel]> = PublishSubject()
     var topicNewsSubject: PublishSubject<NewsModel> = PublishSubject()
     var detailsNewsSubject: PublishSubject<Article> = PublishSubject()
+    
+    var showPopupErrorObservable: Observable<PopupModel> {
+        showPopupErrorSubject.asObservable()
+    }
     
     var topHeadlinesAllObservable: Observable<[Article]> {
         topHeadlinesAll.asObservable()
@@ -40,7 +48,12 @@ class MainViewModel {
         Task {
             do {
               let newsModel = try await network.callTopHeadline(country: country)
-                topHeadlinesAll.onNext(newsModel.articles)
+                if newsModel.status == "error" {
+                    let popupModel = PopupModel(status: newsModel.status, code: newsModel.code ?? "", message: newsModel.message ?? "")
+                    showPopupErrorSubject.onNext(popupModel)
+                } else {
+                    topHeadlinesAll.onNext(newsModel.articles)
+                }
             } catch {
                 print("Error is: \(error.localizedDescription)")
             }
@@ -51,9 +64,15 @@ class MainViewModel {
         Task {
             do {
                 var newsModel = try await network.callTopHeadlineSpecific(source: source)
-                newsModel.topic = source
-                self.newsArray.append(newsModel)
-                newsData.onNext(self.newsArray)
+                if newsModel.status == "error" {
+                    let popupModel = PopupModel(status: newsModel.status, code: newsModel.code ?? "", message: newsModel.message ?? "")
+                    showPopupErrorSubject.onNext(popupModel)
+                } else {
+                    newsModel.topic = source
+                    self.newsArray.append(newsModel)
+                    newsData.onNext(self.newsArray)
+                }
+
             } catch {
                 print("Error is: \(error.localizedDescription)")
             }

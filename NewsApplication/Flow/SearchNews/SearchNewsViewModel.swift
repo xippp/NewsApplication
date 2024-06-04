@@ -14,7 +14,8 @@ class SearchNewsViewModel {
     var searchSubject:PublishSubject<String> = PublishSubject()
     var getNewsSubject: PublishSubject<[Article]> = PublishSubject()
     var selectNews: PublishSubject<Article> = PublishSubject()
-
+    var showPopupSubject: PublishSubject<PopupModel> = PublishSubject()
+    
     var searchObservable: Observable<String> {
         searchSubject.asObservable()
     }
@@ -26,12 +27,20 @@ class SearchNewsViewModel {
         selectNews.asObservable()
     }
     
+    var showPopupObservable: Observable<PopupModel> {
+        showPopupSubject.asObservable()
+    }
+    
     func fetchSearchNews() {
         searchSubject.subscribe { query in
             Task {
                 do {
                     let newsModel = try await self.network.callSeachNews(query: query)
-                    self.getNewsSubject.onNext(newsModel.articles)
+                    if newsModel.status == "error" {
+                        let popupModel = PopupModel(status: newsModel.status, code: newsModel.code ?? "", message: newsModel.message ?? "")
+                    } else {
+                        self.getNewsSubject.onNext(newsModel.articles)
+                    }
                 } catch {
                     print("Error is: \(error.localizedDescription)")
                 }

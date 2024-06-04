@@ -94,6 +94,13 @@ class MainViewController: UIViewController, UIScrollViewDelegate, SectionNewsDel
             }
         }.disposed(by: disposeBag)
         
+        viewModel.showPopupErrorObservable.subscribe { model in
+            DispatchQueue.main.async {
+                self.showPopup(title: model.code ?? "", message: model.message ?? "")
+                self.viewModel.newsData.onCompleted()
+            }
+
+        }
         
     }
     

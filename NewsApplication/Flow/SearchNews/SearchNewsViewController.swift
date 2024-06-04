@@ -56,6 +56,10 @@ class SearchNewsViewController: UIViewController {
 //            self.searchTableView.reloadData()
 //        }.disposed(by: bag)
         
+        viewModel.showPopupObservable.subscribe { popupModel in
+            self.showPopup(title: popupModel.code ?? "", message: popupModel.message ?? "")
+        }
+        
         viewModel.fetchSearchNews()
 
     }

@@ -10,8 +10,10 @@ import Foundation
 // MARK: - Welcome
 struct NewsModel: Codable {
     let status: String
-    let totalResults: Int
-    let articles: [Article]
+    let code: String?
+    let message: String?
+    let totalResults: Int = 0
+    let articles: [Article] = []
     var topic: String?
 }
 
